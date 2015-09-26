@@ -42,19 +42,19 @@ var COMMANDS = {
 	'set-id': 'setID',
 	'add-hook': 'addHook'
 };
-	
+
 try {
 	var config = new CordovaConfig(cli.flags.config || './config.xml');
 	var command = config[COMMANDS[cli.input.shift() + '-' + cli.input.shift()]];
 	var args = cli.input;
-	
+
 	if (!command) {
 		throw new Error('Unknown command');
 	}
 
 	// apply value to config
 	command.apply(config, args);
-	
+
 	// write config.xml
 	config.writeSync();
 } catch (e) {
