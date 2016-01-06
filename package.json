@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "CLI tool for [cordova-config](https://github.com/SamVerschueren/cordova-config). It exports APIs of cordova-config to cli",
   "license": "MIT",
-  "repository": "ragingwind/node-cordova-config-cli",
+  "repository": "ragingwind/cordova-config-cli",
   "author": {
     "name": "ragingwind",
     "email": "ragingwind@gmail.com",
@@ -16,7 +16,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha -t 5000"
+    "test": "xo && ava"
   },
   "files": [
     "cli.js"
@@ -31,9 +31,11 @@
     "meow": "^3.4.1"
   },
   "devDependencies": {
+    "ava": "^0.9.1",
     "cpy": "^3.4.1",
     "mocha": "*",
     "shelljs": "^0.5.3",
-    "xml2js": "^0.4.12"
+    "xml2js": "^0.4.12",
+    "xo": "^0.12.1"
   }
 }

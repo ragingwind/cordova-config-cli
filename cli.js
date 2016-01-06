@@ -58,6 +58,5 @@ try {
 	// write config.xml
 	config.writeSync();
 } catch (e) {
-	console.error(e);
-	process.exit(-1);
+	cli.showHelp(-1);
 }

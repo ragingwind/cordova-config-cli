@@ -1,4 +1,4 @@
-# cordova-config-cli
+# cordova-config-cli [![Build Status](https://travis-ci.org/ragingwind/cordova-config-cli.svg?branch=master)](https://travis-ci.org/ragingwind/cordova-config-cli)
 
 > CLI tool for [cordova-config](https://github.com/SamVerschueren/cordova-config). It exports APIs of cordova-config to cli
 
