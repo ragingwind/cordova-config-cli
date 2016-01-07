@@ -2,21 +2,24 @@
 
 import test from 'ava';
 import shell from 'shelljs';
-import cpy from 'cpy';
 import fs from 'fs';
+import path from 'path';
+import os from 'os';
+
+const tmp = path.join(os.tmpdir(), 'config.xml');
 
 function matchup(exp) {
-	return fs.readFileSync('./.tmp/config.xml').toString().match(new RegExp(exp)) !== null;
+	return fs.readFileSync(tmp).toString().match(new RegExp(exp)) !== null;
 }
 
 function sh(commands) {
-	return [['node ./cli.js', commands, '--config=./.tmp/config.xml'].join(' ')];
+	return [['node ./cli.js', commands, '--config=' + tmp].join(' ')];
 }
 
-test.beforeEach(t => {
-	cpy(['./fixtures/config.xml'], '.tmp', () => {
+test.cb.before(t => {
+	fs.createReadStream('./fixtures/config.xml').pipe(fs.createWriteStream(tmp).on('close', () => {
 		t.end();
-	});
+	}));
 });
 
 test('should be set all of values coming over from cli', t => {
