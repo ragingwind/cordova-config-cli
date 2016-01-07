@@ -1,6 +1,6 @@
 {
   "name": "cordova-config-cli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "CLI tool for [cordova-config](https://github.com/SamVerschueren/cordova-config). It exports APIs of cordova-config to cli",
   "license": "MIT",
   "repository": "ragingwind/cordova-config-cli",
