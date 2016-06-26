@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import test from 'ava';
-import shell from 'shelljs';
+import execa from 'execa';
 
 const tmp = path.join(os.tmpdir(), 'config.xml');
 
@@ -22,41 +22,41 @@ test.cb.before(t => {
 	}));
 });
 
-test('should be set all of values coming over from cli', t => {
-	shell.exec(sh('set name "New name"'));
+test('should be set all of values coming over from cli', async t => {
+	await execa.shell(sh('set name "New name"'));
 	t.true(matchup('<name>New name</name>'));
 
-	shell.exec(sh('set desc "New desc"'));
+	await execa.shell(sh('set desc "New desc"'));
 	t.true(matchup('<description>New desc</description>'));
 
-	shell.exec(sh('set author "New name" new@email http://newwebsite.com'));
+	await execa.shell(sh('set author "New name" new@email http://newwebsite.com'));
 	t.true(matchup('<author email="new@email" href="http://newwebsite.com">New name</author>'));
 
-	shell.exec(sh('set version 1.0.0'));
+	await execa.shell(sh('set version 1.0.0'));
 	t.true(matchup('version="1.0.0"'));
 
-	shell.exec(sh('set android-version 23'));
+	await execa.shell(sh('set android-version 23'));
 	t.true(matchup('android-versionCode="23"'));
 
-	shell.exec(sh('set ios-version 1.0.0'));
+	await execa.shell(sh('set ios-version 1.0.0'));
 	t.true(matchup('ios-CFBundleVersion="1.0.0"'));
 
-	shell.exec(sh('add preference new-name new-value'));
+	await execa.shell(sh('add preference new-name new-value'));
 	t.true(matchup('<preference name="new-name" value="new-value" />'));
 
-	shell.exec(sh('add access-origin new-origin'));
+	await execa.shell(sh('add access-origin new-origin'));
 	t.true(matchup('<access origin="new-origin" />'));
-	shell.exec(sh('add access-origin "**"'));
+	await execa.shell(sh('add access-origin "**"'));
 	t.true(matchup('<access origin="\\*\\*" />'));
 
-	shell.exec(sh('add access-origin remove-origin'));
+	await execa.shell(sh('add access-origin remove-origin'));
 	t.true(matchup('<access origin="remove-origin" />'));
-	shell.exec(sh('rm access-origin remove-origin'));
+	await execa.shell(sh('rm access-origin remove-origin'));
 	t.true(!matchup('<access origin="remove-origin" />'));
 
-	shell.exec(sh('set id com.my.new.app'));
+	await execa.shell(sh('set id com.my.new.app'));
 	t.true(matchup('id="com.my.new.app"'));
 
-	shell.exec(sh('add hook after_prepare script/after_prepare.js'));
+	await execa.shell(sh('add hook after_prepare script/after_prepare.js'));
 	t.true(matchup('<hook src="script/after_prepare.js" type="after_prepare" />'));
 });
