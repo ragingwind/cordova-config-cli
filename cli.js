@@ -57,6 +57,6 @@ try {
 
 	// write config.xml
 	config.writeSync();
-} catch (e) {
+} catch (err) {
 	cli.showHelp(-1);
 }

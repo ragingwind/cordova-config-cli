@@ -28,11 +28,11 @@
   ],
   "dependencies": {
     "cordova-config": "0.6.2",
-    "meow": "^3.4.1"
+    "meow": "^3.7.0"
   },
   "devDependencies": {
-    "ava": "^0.9.1",
-    "shelljs": "^0.5.3",
-    "xo": "^0.12.1"
+    "ava": "^0.15.2",
+    "shelljs": "^0.7.0",
+    "xo": "^0.16.0"
   }
 }
